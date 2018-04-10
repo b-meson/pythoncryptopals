@@ -9,15 +9,18 @@ import challenge2
 
 
 def xor_singlekey(input_b):
-    char_set = string.printable
-    b_array = bytearray(char_set, 'utf-8')
+# The xor is against a single byte from 0 to 256, not a literal ascii "character"
     bytes_output = bytearray()
-    for b in b_array:
+    for i in range(0, 255):
         bytes_output = bytearray()
         for x in input_b:
-            bytes_output.append(x ^ b)
-        s_plaintext = bytes_output.decode('utf-8')
-        print(bytes_output)
+            bytes_output.append(x ^ i)
+        try:
+            s_plaintext = bytes_output.decode('utf-8')
+            print(s_plaintext)
+        except UnicodeDecodeError:
+            pass
+
 
 
 def test_xor_singlekey():
